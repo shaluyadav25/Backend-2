@@ -1,3 +1,4 @@
+
 import express from "express";
 import ConnectDB from "./config/db.js";
 import dotenv from "dotenv";
@@ -13,6 +14,14 @@ app.use(express.json());
 const PORT = process.env.PORT || 3000;
 
 ConnectDB();
+
+// Health Route
+app.get("/health", (req, res) => {
+    res.status(200).json({
+        success: true,
+        message: "Server is healthy"
+    });
+});
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
